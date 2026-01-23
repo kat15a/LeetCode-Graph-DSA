@@ -1,10 +1,21 @@
-LeetCode: Number of Islands
-Link:https://leetcode.com/problems/number-of-islands/description/
+Problem: Number of Islands
+LeetCode Link: https://leetcode.com/problems/number-of-islands/
+
+Problem Statement:
+Given a 2D grid of '1's (land) and '0's (water), count the number of islands.
+An island is formed by connecting adjacent lands horizontally or vertically.
 
 Approach:
-- Use BFS/DFS
-- Traverse grid
-- Count connected components
+- Traverse every cell of the grid
+- When an unvisited land cell is found, start BFS
+- BFS marks all connected land cells as visited
+- Each BFS traversal represents one island
 
-Time Complexity: O(n * m)
-Space Complexity: O(n * m)
+Algorithm Used:
+- Breadth First Search (BFS)
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
