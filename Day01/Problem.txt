@@ -1,0 +1,10 @@
+LeetCode: Number of Islands
+Link:https://leetcode.com/problems/number-of-islands/description/
+
+Approach:
+- Use BFS/DFS
+- Traverse grid
+- Count connected components
+
+Time Complexity: O(n * m)
+Space Complexity: O(n * m)
