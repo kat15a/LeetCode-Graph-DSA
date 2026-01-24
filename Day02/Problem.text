@@ -1,0 +1,25 @@
+Problem: Number of Provinces
+LeetCode Link: https://leetcode.com/problems/number-of-provinces/
+
+Problem Statement:
+You are given an n x n matrix isConnected where isConnected[i][j] = 1 
+if the ith city is directly connected to the jth city, and 0 otherwise.
+A province is a group of cities that are directly or indirectly connected.
+
+Approach:
+- Treat each city as a node in a graph
+- Convert the adjacency matrix into an adjacency list
+- Traverse each node of the graph
+- When an unvisited city is found, start DFS
+- DFS marks all connected cities as visited
+- Each DFS traversal represents one province
+
+Algorithm Used:
+- Depth First Search (DFS)
+
+Time Complexity:
+- O(N × N)
+
+Space Complexity:
+- O(N × N)
+
