@@ -1,0 +1,28 @@
+Problem: Flood Fill
+LeetCode Link: https://leetcode.com/problems/flood-fill/
+
+Problem Statement:
+You are given an image represented by an m x n grid of integers.
+You are also given a starting pixel (sr, sc) and a new color.
+Perform a flood fill on the image starting from the given pixel.
+
+Flood fill means:
+- Change the color of the starting pixel
+- Change the color of all connected pixels having the same initial color
+- Connectivity is allowed only in 4 directions (up, down, left, right)
+
+Approach:
+- Store the original color of the starting pixel
+- If the original color is already the new color, return the image
+- Use BFS starting from the given pixel
+- For each pixel, visit its 4-directionally connected neighbors
+- Change the color of all valid connected pixels
+
+Algorithm Used:
+- Breadth First Search (BFS)
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
