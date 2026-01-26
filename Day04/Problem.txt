@@ -1,0 +1,33 @@
+Problem: Rotting Oranges
+LeetCode Link: https://leetcode.com/problems/rotting-oranges/
+
+Problem Statement:
+You are given an m x n grid where:
+- 0 represents an empty cell
+- 1 represents a fresh orange
+- 2 represents a rotten orange
+
+Every minute, a rotten orange rots its adjacent fresh oranges
+(up, down, left, right).
+
+Task:
+Return the minimum number of minutes required so that no fresh orange remains.
+If it is impossible, return -1.
+
+Approach:
+- Use multi-source BFS starting from all initially rotten oranges
+- Push all rotten oranges into the queue at the beginning
+- Perform BFS level by level (each level represents 1 minute)
+- In each level, rot all adjacent fresh oranges
+- Track time only when at least one orange gets rotted in that level
+- After BFS, check if any fresh orange remains
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Level Order Traversal (Multi-source BFS)
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
