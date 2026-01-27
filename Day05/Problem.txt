@@ -1,0 +1,27 @@
+Problem: 01 Matrix
+LeetCode Link: https://leetcode.com/problems/01-matrix/
+
+Problem Statement:
+You are given an m x n binary matrix mat consisting of 0s and 1s.
+For each cell, find the distance to the nearest 0.
+The distance between two adjacent cells is 1.
+Movement is allowed only in four directions: up, down, left, right.
+
+Approach:
+- Treat each cell as a node in a grid graph
+- Use multi-source BFS starting from all cells containing 0
+- Push all 0-cells into the queue initially with distance 0
+- Perform BFS to expand layer by layer
+- Each BFS level represents distance from the nearest 0
+- Store the distance for each cell when it is first visited
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Multi-source BFS
+- Shortest Path in Unweighted Graph
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
