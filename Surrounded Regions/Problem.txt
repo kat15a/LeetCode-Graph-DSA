@@ -1,0 +1,29 @@
+Problem: Surrounded Regions
+LeetCode Link: https://leetcode.com/problems/surrounded-regions/
+
+Problem Statement:
+You are given an m x n board containing characters 'X' and 'O'.
+An 'O' region is considered surrounded if it is completely enclosed by 'X's
+on all four sides.
+
+Task:
+Capture all surrounded regions by flipping surrounded 'O's to 'X'.
+'O's connected to the boundary should NOT be flipped.
+
+Approach:
+- Observe that only 'O's connected to the boundary cannot be captured
+- Start BFS from all boundary cells that contain 'O'
+- Mark all reachable boundary-connected 'O's as safe using a temporary marker '#'
+- After BFS:
+  - Convert remaining 'O's to 'X' (captured regions)
+  - Convert '#' back to 'O' (safe regions)
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Boundary Traversal
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
