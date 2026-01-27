@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class dfs {
+   public dfs() {
+   }
+
+   public static void dfs(int var0, boolean[] var1, ArrayList<ArrayList<Integer>> var2, ArrayList<Integer> var3) {
+      var1[var0] = true;
+      var3.add(var0);
+      Iterator var4 = ((ArrayList)var2.get(var0)).iterator();
+
+      while(var4.hasNext()) {
+         Integer var5 = (Integer)var4.next();
+         if (!var1[var5]) {
+            dfs(var5, var1, var2, var3);
+         }
+      }
+
+   }
+
+   public ArrayList<Integer> dfsOfGraph(int var1, ArrayList<ArrayList<Integer>> var2) {
+      boolean[] var3 = new boolean[var1];
+      ArrayList var4 = new ArrayList();
+      dfs(0, var3, var2, var4);
+      return var4;
+   }
+
+   public static void main(String[] var0) {
+      byte var1 = 5;
+      ArrayList var2 = new ArrayList();
+
+      for(int var3 = 0; var3 < var1; ++var3) {
+         var2.add(new ArrayList());
+      }
+
+      ((ArrayList)var2.get(0)).add(1);
+      ((ArrayList)var2.get(0)).add(2);
+      ((ArrayList)var2.get(1)).add(3);
+      ((ArrayList)var2.get(2)).add(4);
+      dfs var4 = new dfs();
+      System.out.println(var4.dfsOfGraph(var1, var2));
+   }
+}
