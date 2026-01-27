@@ -1,6 +1,6 @@
 # LeetCode Graph DSA 🚀
 
-This repository contains my **daily solutions to Graph problems from LeetCode**.
+This repository contains my **solutions to Graph problems from LeetCode**.
 The goal is to build strong fundamentals in graph algorithms and maintain consistency.
 
 ---
