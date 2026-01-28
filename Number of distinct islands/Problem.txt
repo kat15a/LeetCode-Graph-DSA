@@ -1,0 +1,32 @@
+Problem: Number of Distinct Islands
+LeetCode Link: https://leetcode.com/problems/number-of-distinct-islands/
+
+Problem Statement:
+You are given an m x n binary grid where:
+- 1 represents land
+- 0 represents water
+
+An island is a group of connected land cells (4-directionally).
+Two islands are considered distinct if their shapes are different.
+Rotation and reflection are NOT allowed.
+
+Task:
+Return the number of distinct islands in the grid.
+
+Approach:
+- Traverse the grid to find unvisited land cells
+- For each new island, perform DFS
+- Store the relative position of each cell with respect to the starting cell
+- The relative positions represent the shape of the island
+- Store each island shape in a set
+- The number of unique shapes gives the number of distinct islands
+
+Algorithm Used:
+- Depth First Search (DFS)
+- Shape Encoding using Relative Coordinates
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
