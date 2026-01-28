@@ -1,0 +1,19 @@
+Problem: Number of Enclaves
+LeetCode Link: https://leetcode.com/problems/number-of-enclaves/
+
+Problem Statement:
+You are given an m x n binary matrix grid where:
+- 1 represents land
+- 0 represents water
+
+A land cell is considered an enclave if it cannot walk off the boundary of the grid
+in any number of moves. Movement is allowed only in four directions
+(up, down, left, right).
+
+Task:
+Return the number of land cells that are enclaves.
+
+Approach:
+- Observe that land cells connected to the boundary cannot be enclaves
+- Start BFS from all boundary land cells
+- Mark al
