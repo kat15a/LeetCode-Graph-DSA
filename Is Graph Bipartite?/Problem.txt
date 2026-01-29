@@ -1,0 +1,29 @@
+Problem: Is Graph Bipartite?
+LeetCode Link: https://leetcode.com/problems/is-graph-bipartite/
+
+Problem Statement:
+You are given an undirected graph represented as an adjacency list.
+The graph may be disconnected.
+
+A graph is bipartite if the nodes can be divided into two disjoint sets
+such that no two adjacent nodes belong to the same set.
+
+Task:
+Determine whether the given graph is bipartite.
+
+Approach:
+- Use graph coloring technique
+- Assign colors (0 and 1) to nodes such that:
+  - Adjacent nodes always have different colors
+- Traverse each connected component using BFS
+- If a conflict in coloring is found, the graph is not bipartite
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Graph Coloring
+
+Time Complexity:
+- O(V + E)
+
+Space Complexity:
+- O(V)
