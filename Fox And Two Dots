@@ -1,0 +1,58 @@
+import java.util.*;
+
+public class Main {
+
+    static int n, m;
+    static char[][] grid;
+    static boolean[][] vis;
+
+    static int[] dr = {0, 1, 0, -1};
+    static int[] dc = {1, 0, -1, 0};
+
+    static boolean dfs(int r, int c, int pr, int pc) {
+        vis[r][c] = true;
+
+        for (int i = 0; i < 4; i++) {
+            int nr = r + dr[i];
+            int nc = c + dc[i];
+
+            if (nr >= 0 && nr < n && nc >= 0 && nc < m &&
+                grid[nr][nc] == grid[r][c]) {
+
+                if (!vis[nr][nc]) {
+                    if (dfs(nr, nc, r, c)) return true;
+                } else if (nr != pr || nc != pc) {
+                    return true; // cycle found
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+
+        grid = new char[n][m];
+        vis = new boolean[n][m];
+
+        for (int i = 0; i < n; i++) {
+            grid[i] = sc.next().toCharArray();
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (!vis[i][j]) {
+                    if (dfs(i, j, -1, -1)) {
+                        System.out.println("Yes");
+                        return;
+                    }
+                }
+            }
+        }
+        System.out.println("No");
+    }
+}
+
+ 
