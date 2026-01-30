@@ -1,0 +1,59 @@
+import java.util.*;
+
+public class cycliccomponents {
+
+    static List<List<Integer>> adj = new ArrayList<>();
+    static boolean[] vis;
+    static void dfs(int node, List<Integer> comp) {
+        vis[node] = true;
+        comp.add(node);
+
+        for (int it : adj.get(node)) {
+            if (!vis[it]) {
+                dfs(it, comp);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt(); 
+        int m = sc.nextInt();
+
+        vis = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
+        }
+        for (int i = 0; i < m; i++) {
+            int u = sc.nextInt() - 1;
+            int v = sc.nextInt() - 1;
+            adj.get(u).add(v);
+            adj.get(v).add(u);
+        }
+
+        int cyclicCount = 0;
+        for (int i = 0; i < n; i++) {
+            if (!vis[i]) {
+                List<Integer> comp = new ArrayList<>();
+                dfs(i, comp);
+
+                boolean isCycle = true;
+                for (int node : comp) {
+                    if (adj.get(node).size() != 2) {
+                        isCycle = false;
+                        break;
+                    }
+                }
+
+                if (isCycle){
+                    cyclicCount++;
+                }
+            }
+        }
+
+        System.out.println(cyclicCount);
+    }
+}
+ 
