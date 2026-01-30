@@ -1,0 +1,63 @@
+class Solution {
+    public static class Pair implements Comparable<Pair>{
+        int node;
+        int dest;  
+
+        public Pair(int n,int d){
+            this.node=n;
+            this.dest=d;
+        }
+
+        @Override
+        public int compareTo(Pair p2){
+            return this.dest - p2.dest;
+        }
+    }
+
+    public int[] dijkstra(int V, int[][] edges, int src) {
+
+        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+        for(int i = 0; i < V; i++){
+            adj.add(new ArrayList<>());
+        }
+
+        for(int[] edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+            int wt = edge[2];
+
+            adj.get(u).add(new Pair(v, wt));
+            adj.get(v).add(new Pair(u, wt));
+        }
+
+        int[] dist = new int[V];
+        boolean[] vis = new boolean[V];
+        for(int i = 0; i < V; i++){
+            dist[i] = Integer.MAX_VALUE;
+        }
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        pq.add(new Pair(src, 0));
+        dist[src] = 0;
+
+        while(!pq.isEmpty()){
+            Pair curr = pq.remove();
+            int u = curr.node;
+
+            if(vis[u]) continue;
+            vis[u] = true;
+
+            for(int i = 0; i < adj.get(u).size(); i++){
+                Pair e = adj.get(u).get(i);
+                int v = e.node;
+                int wt = e.dest;
+
+                if(!vis[v] && dist[u] + wt < dist[v]){
+                    dist[v] = dist[u] + wt;
+                    pq.add(new Pair(v, dist[v]));
+                }
+            }
+        }
+        return dist;
+    }
+}
