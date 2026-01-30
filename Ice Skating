@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class iceskMain {
+
+    static int n;
+    static int[] x, y;
+    static boolean[] vis;
+
+    static void dfs(int i) {
+        vis[i] = true;
+        for (int j = 0; j < n; j++) {
+            if (!vis[j] && (x[i] == x[j] || y[i] == y[j])) {
+                dfs(j);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        x = new int[n];
+        y = new int[n];
+        vis = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            x[i] = sc.nextInt();
+            y[i] = sc.nextInt();
+        }
+
+        int components = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (!vis[i]) {
+                components++;
+                dfs(i);
+            }
+        }
+
+        System.out.println(components - 1);
+    }
+}
+ 
