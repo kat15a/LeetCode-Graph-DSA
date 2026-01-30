@@ -1,0 +1,61 @@
+import java.util.*;
+
+public class kefa {
+
+    static int n, m;
+    static int[] cat;
+    static ArrayList<ArrayList<Integer>> adj;
+    static int answer = 0;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        m = sc.nextInt();
+
+        cat = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            cat[i] = sc.nextInt();
+        }
+
+        adj = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < n - 1; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            adj.get(u).add(v);
+            adj.get(v).add(u);
+        }
+
+        dfs(1, 0, 0);
+
+        System.out.println(answer);
+    }
+
+    static void dfs(int node, int parent, int consecutiveCats) {
+
+        if (cat[node] == 1)
+            consecutiveCats++;
+        else
+            consecutiveCats = 0;
+
+        if (consecutiveCats > m)
+            return;
+
+        boolean isLeaf = true;
+
+        for (int next : adj.get(node)) {
+            if (next != parent) {
+                isLeaf = false;
+                dfs(next, node, consecutiveCats);
+            }
+        }
+
+        if (isLeaf)
+            answer++;
+    }
+}
+ 
