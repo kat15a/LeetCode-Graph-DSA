@@ -1,0 +1,87 @@
+import java.util.*;
+
+public class Solution {
+
+    public static class Pair implements Comparable<Pair> {
+        int node;
+        int dest; // distance
+
+        public Pair(int n, int d) {
+            this.node = n;
+            this.dest = d;
+        }
+
+        @Override
+        public int compareTo(Pair p2) {
+            return this.dest - p2.dest;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {  
+            adj.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < m; i++) {
+            int u = sc.nextInt();
+            int v = sc.nextInt();
+            int w = sc.nextInt();
+            adj.get(u).add(new Pair(v, w));
+            adj.get(v).add(new Pair(u, w));
+        }
+
+        int[] dist = new int[n + 1]; 
+        boolean[] vis = new boolean[n + 1];
+        int[] parent = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            dist[i] = Integer.MAX_VALUE;
+            parent[i] = -1;
+        }
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        dist[1] = 0;
+        pq.add(new Pair(1, 0));
+
+        while (!pq.isEmpty()) {
+            Pair curr = pq.poll();
+            int u = curr.node;
+
+            if (vis[u]) continue;
+            vis[u] = true;
+
+            for (Pair e : adj.get(u)) {
+                int v = e.node;
+                int wt = e.dest;
+
+                if (!vis[v] && dist[u] + wt < dist[v]) {
+                    dist[v] = dist[u] + wt;
+                    parent[v] = u; 
+                    pq.add(new Pair(v, dist[v]));
+                }
+            }
+        }
+        if (dist[n] == Integer.MAX_VALUE) {
+            System.out.println(-1);
+            return;
+        }
+        List<Integer> path = new ArrayList<>();
+        int curr = n;
+        while (curr != -1) {
+            path.add(curr);
+            curr = parent[curr];
+        }
+
+        Collections.reverse(path);
+        for (int x : path) {
+            System.out.print(x + " ");
+        }
+    }
+}
+ 
