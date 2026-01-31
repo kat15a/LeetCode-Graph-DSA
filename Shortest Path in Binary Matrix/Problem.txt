@@ -1,0 +1,33 @@
+Problem: Shortest Path in Binary Matrix
+LeetCode Link: https://leetcode.com/problems/shortest-path-in-binary-matrix/
+
+Problem Statement:
+You are given an n x n binary matrix grid where:
+- 0 represents an open cell
+- 1 represents a blocked cell
+
+You are allowed to move in 8 directions:
+(horizontal, vertical, and diagonal).
+
+Task:
+Return the length of the shortest clear path from the top-left cell (0, 0)
+to the bottom-right cell (n - 1, n - 1).
+If no such path exists, return -1.
+
+Approach:
+- This is a shortest path problem on an unweighted grid
+- Use BFS starting from cell (0, 0)
+- Each BFS level represents one step in the path
+- Explore all 8 possible directions from each cell
+- Mark visited cells to avoid revisiting
+- As soon as the destination is reached, return the distance
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Shortest Path in Unweighted Graph
+
+Time Complexity:
+- O(N × N)
+
+Space Complexity:
+- O(N × N)
