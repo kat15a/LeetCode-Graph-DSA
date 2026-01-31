@@ -1,0 +1,36 @@
+Problem: Count Battleships on a Board
+LeetCode Link: https://leetcode.com/problems/count-battleships-on-a-board/
+
+Problem Statement:
+You are given an m x n board where:
+- 'X' represents part of a battleship
+- '.' represents empty water
+
+Battleships are placed either horizontally or vertically.
+No two battleships touch each other (no adjacent ships).
+
+Task:
+Return the number of battleships on the board.
+
+Approach:
+- Traverse the board cell by cell
+- Count only the starting cell of each battleship
+- A cell is the start of a battleship if:
+  - It contains 'X'
+  - There is no 'X' above it
+  - There is no 'X' to its left
+- This avoids counting the same battleship multiple times
+
+Algorithm Used:
+- Grid Traversal
+- Pattern Recognition
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(1)
+
+Interview Insight:
+- BFS/DFS is unnecessary for this problem.
+- Recognizing the starting cell of each ship leads to an optimal solution.
