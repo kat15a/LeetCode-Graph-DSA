@@ -1,0 +1,31 @@
+Problem: Island Perimeter
+LeetCode Link: https://leetcode.com/problems/island-perimeter/
+
+Problem Statement:
+You are given a 2D grid where:
+- 1 represents land
+- 0 represents water
+
+There is exactly one island in the grid.
+The island is surrounded by water and does not contain any lakes.
+
+Task:
+Return the perimeter of the island.
+
+Approach:
+- Traverse the grid to find land cells
+- Use BFS to traverse all connected land cells
+- For each land cell, check its 4 directions:
+  - If the neighbor is out of bounds, increase perimeter
+  - If the neighbor is water, increase perimeter
+- Sum up all such boundary contributions
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Grid Traversal
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
