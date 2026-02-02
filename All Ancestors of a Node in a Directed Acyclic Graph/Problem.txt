@@ -1,0 +1,31 @@
+Problem: All Ancestors of a Node in a Directed Acyclic Graph
+LeetCode Link: https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/
+
+Problem Statement:
+You are given a directed acyclic graph (DAG) with n nodes labeled from 0 to n-1
+and a list of directed edges.
+
+For each node i, find all nodes that can reach node i (i.e., its ancestors).
+The ancestors of a node should be returned in sorted order.
+
+Task:
+Return a list where result[i] contains all ancestors of node i.
+
+Approach:
+- Reverse the direction of edges:
+  - If there is an edge u -> v, then u is an ancestor of v
+- Build a reversed adjacency list where v points to u
+- For each node i:
+  - Perform DFS to find all reachable nodes in the reversed graph
+  - These reachable nodes are the ancestors of i
+- Sort the ancestor list for each node
+
+Algorithm Used:
+- Depth First Search (DFS)
+- Graph Traversal on DAG
+
+Time Complexity:
+- O(N × (N + E)) in worst case
+
+Space Complexity:
+- O(N + E)
