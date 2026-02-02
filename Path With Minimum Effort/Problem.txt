@@ -1,0 +1,33 @@
+Problem: Path With Minimum Effort
+LeetCode Link: https://leetcode.com/problems/path-with-minimum-effort/
+
+Problem Statement:
+You are given a 2D grid heights where heights[row][col] represents
+the height of the cell.
+
+You are located at the top-left cell (0,0) and want to reach the
+bottom-right cell (n-1,m-1).
+
+The effort of a path is defined as the maximum absolute difference
+in heights between two consecutive cells along the path.
+
+Task:
+Return the minimum effort required to travel from the start to the destination.
+
+Approach:
+- This is a shortest path problem with a modified cost function
+- The cost of moving to a cell is the maximum height difference seen so far
+- Use Dijkstra’s algorithm with a min-heap
+- Always expand the cell with the minimum current effort
+- Relax edges by taking:
+  max(currentEffort, heightDifference)
+
+Algorithm Used:
+- Dijkstra’s Algorithm
+- Min-Heap (Priority Queue)
+
+Time Complexity:
+- O(N × M × log(N × M))
+
+Space Complexity:
+- O(N × M)
