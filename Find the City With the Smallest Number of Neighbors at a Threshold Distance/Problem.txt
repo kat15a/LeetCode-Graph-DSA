@@ -1,0 +1,37 @@
+Problem: Find the City With the Smallest Number of Neighbors at a Threshold Distance
+LeetCode Link: https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/
+
+Problem Statement:
+You are given n cities numbered from 0 to n-1 and a list of weighted edges
+where edges[i] = [u, v, w] represents a bidirectional edge between u and v
+with distance w.
+
+You are also given a distanceThreshold.
+
+Task:
+Return the city with the smallest number of cities that are reachable
+at a distance less than or equal to distanceThreshold.
+If multiple cities have the same smallest number, return the city
+with the greatest index.
+
+Approach:
+- Use Floyd–Warshall algorithm to compute shortest distances
+  between all pairs of cities.
+- Initialize distance matrix:
+  - 0 for same city
+  - infinity for others
+- Fill direct edge weights
+- Relax all paths using intermediate nodes (k loop)
+- For each city:
+  - Count how many cities are reachable within threshold
+- Choose city with minimum reachable count
+- If tie occurs, choose larger index
+
+Algorithm Used:
+- Floyd–Warshall (All-Pairs Shortest Path)
+
+Time Complexity:
+- O(N³)
+
+Space Complexity:
+- O(N²)
