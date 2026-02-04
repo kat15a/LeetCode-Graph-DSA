@@ -1,0 +1,38 @@
+Problem: High Score
+Platform: CSES
+Link: https://cses.fi/problemset/task/1673/
+
+Problem Statement:
+You are given a directed graph with n nodes and m edges.
+Each edge has a weight (which can be positive or negative).
+
+You start from node 1 and want to reach node n.
+The score of a path is the sum of weights of its edges.
+
+Task:
+Find the maximum score possible.
+If the score can be made infinitely large (due to a positive cycle
+affecting the path to node n), print -1.
+
+Approach:
+- This is a maximum path problem in a graph with possible cycles.
+- Use Bellman-Ford algorithm to compute longest distances:
+  - Initialize distances with negative infinity.
+  - Relax edges (n-1) times.
+- If after (n-1) iterations, we can still relax an edge,
+  then a positive cycle exists.
+- Check whether that cycle can reach the destination node.
+  - Use DFS to verify if cycle node can reach node n.
+- If yes, print -1 (infinite score possible).
+- Otherwise, print the maximum score.
+
+Algorithm Used:
+- Bellman-Ford
+- Cycle Detection
+- DFS Reachability Check
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N + M)
