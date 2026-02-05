@@ -1,0 +1,41 @@
+Problem: Minesweeper
+LeetCode Link: https://leetcode.com/problems/minesweeper/
+
+Problem Statement:
+You are given a 2D board representing a Minesweeper game.
+
+Each cell can be:
+- 'M' → unrevealed mine
+- 'E' → unrevealed empty square
+- 'B' → revealed blank square (no adjacent mines)
+- '1' to '8' → number of adjacent mines
+- 'X' → revealed mine
+
+You are also given a click position.
+
+Rules:
+- If a mine ('M') is clicked → change it to 'X'
+- If an empty cell ('E') is clicked:
+  - If it has adjacent mines → replace it with the count
+  - Otherwise → reveal it as 'B' and recursively reveal neighbors
+
+Task:
+Return the updated board after the click.
+
+Approach:
+- If clicked cell is 'M', mark it 'X'
+- Otherwise use BFS:
+  - Count adjacent mines
+  - If count > 0 → mark with digit
+  - If count == 0 → mark as 'B' and explore neighbors
+- Use 8-direction traversal
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Grid Simulation
+
+Time Complexity:
+- O(M × N)
+
+Space Complexity:
+- O(M × N)
