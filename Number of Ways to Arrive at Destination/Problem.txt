@@ -1,0 +1,32 @@
+Problem: Number of Ways to Arrive at Destination
+LeetCode Link: https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/
+
+Problem Statement:
+You are given a weighted undirected graph with n intersections numbered from 0 to n - 1.
+The roads array contains edges where roads[i] = [u, v, time]
+represents a bidirectional road between u and v with travel time time.
+
+Task:
+Return the number of different shortest paths from intersection 0 to intersection n - 1.
+Since the answer may be large, return it modulo 10^9 + 7.
+
+Approach:
+- Use Dijkstra’s algorithm to compute shortest distances.
+- Maintain:
+  - dist[i] → shortest distance to node i
+  - ways[i] → number of shortest paths to node i
+- When a shorter path is found:
+  - Update dist[v]
+  - Set ways[v] = ways[u]
+- When an equal shortest path is found:
+  - Add ways[u] to ways[v]
+
+Algorithm Used:
+- Dijkstra’s Algorithm
+- Path Counting with Dynamic Programming
+
+Time Complexity:
+- O(E log V)
+
+Space Complexity:
+- O(V + E)
