@@ -1,0 +1,90 @@
+// Problem: Number of Operations to Make Network Connected
+// Technique: Disjoint Set (Union-Find)
+// Concepts Used:
+//  - Path Compression
+//  - Union by Rank
+//  - Counting Connected Components
+//
+// Time Complexity: O(E * α(N))  ≈ O(E)
+// Space Complexity: O(N)
+
+class DisjointSet {
+
+    List<Integer> parent = new ArrayList<>();
+    List<Integer> rank = new ArrayList<>();
+
+    public DisjointSet(int n) {
+        for (int i = 0; i < n; i++) {
+            parent.add(i);
+            rank.add(0);
+        }
+    }
+
+    // Find with Path Compression
+    public int find(int node) {
+        if (node == parent.get(node)) {
+            return node;
+        }
+
+        int ultimateParent = find(parent.get(node));
+        parent.set(node, ultimateParent); // Path compression
+        return ultimateParent;
+    }
+
+    // Union by Rank
+    public void union(int u, int v) {
+        int ulp_u = find(u);
+        int ulp_v = find(v);
+
+        if (ulp_u == ulp_v) return;
+
+        if (rank.get(ulp_u) < rank.get(ulp_v)) {
+            parent.set(ulp_u, ulp_v);
+        } 
+        else if (rank.get(ulp_v) < rank.get(ulp_u)) {
+            parent.set(ulp_v, ulp_u);
+        } 
+        else {
+            parent.set(ulp_v, ulp_u);
+            rank.set(ulp_u, rank.get(ulp_u) + 1);
+        }
+    }
+}
+
+class Solution {
+
+    public int makeConnected(int n, int[][] connections) {
+
+        // If not enough cables, impossible
+        if (connections.length < n - 1)
+            return -1;
+
+        DisjointSet ds = new DisjointSet(n);
+
+        int extraEdges = 0;
+
+        // Process all connections
+        for (int[] edge : connections) {
+            int u = edge[0];
+            int v = edge[1];
+
+            if (ds.find(u) == ds.find(v)) {
+                extraEdges++;  // Redundant edge
+            } else {
+                ds.union(u, v);
+            }
+        }
+
+        // Count connected components
+        int components = 0;
+        for (int i = 0; i < n; i++) {
+            if (ds.find(i) == i) {
+                components++;
+            }
+        }
+
+        int requiredEdges = components - 1;
+
+        return (extraEdges >= requiredEdges) ? requiredEdges : -1;
+    }
+}
