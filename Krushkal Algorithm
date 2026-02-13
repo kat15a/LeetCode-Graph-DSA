@@ -1,0 +1,73 @@
+import java.util.*;
+
+class DisjointSet {
+    int[] parent;
+    int[] rank;
+
+    public DisjointSet(int V) {
+        parent = new int[V];
+        rank = new int[V];
+        for (int i = 0; i < V; i++) {
+            parent[i] = i;
+            rank[i] = 0;
+        }
+    }
+
+    public int find(int node) {
+        if (parent[node] != node)
+            parent[node] = find(parent[node]);
+        return parent[node];
+    }
+
+    public void union(int u, int v) {
+        int pu = find(u);
+        int pv = find(v);
+
+        if (pu == pv) return;
+
+        if (rank[pu] < rank[pv]) {
+            parent[pu] = pv;
+        } else if (rank[pu] > rank[pv]) {
+            parent[pv] = pu;
+        } else {
+            parent[pv] = pu;
+            rank[pu]++;
+        }
+    }
+}
+
+public class kruskal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int V = sc.nextInt();
+        int E = sc.nextInt();
+
+        int[][] edges = new int[E][3];
+
+        for (int i = 0; i < E; i++) {
+            edges[i][0] = sc.nextInt();
+            edges[i][1] = sc.nextInt();
+            edges[i][2] = sc.nextInt();
+        }
+
+        Arrays.sort(edges, (a, b) -> a[2] - b[2]);
+
+        DisjointSet d = new DisjointSet(V);
+
+        int count = 0;
+
+        for (int i = 0; i < E; i++) {
+            int u = edges[i][0];
+            int v = edges[i][1];
+
+            if (d.find(u) != d.find(v)) {
+                d.union(u, v);
+                System.out.println(u + " " + v);
+                count++;
+                if (count == V - 1)
+                    break;
+            }
+        }
+    }
+}
