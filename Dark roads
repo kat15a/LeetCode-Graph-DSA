@@ -1,0 +1,69 @@
+import java.util.*;
+class Disjoint{
+    int[] parent;
+    int[] rank;
+    public Disjoint(int m){
+        parent=new int[m];
+        rank=new int[m];
+        for(int i=0;i<m;i++){
+            parent[i]=i;
+            rank[i]=0;
+        }
+    }
+    public int find(int node){
+        if(parent[node]==node)return node;
+        return parent[node]=find(parent[node]);
+    }
+    public void union(int u,int v){
+        int ulp_u=find(u);
+        int ulp_v=find(v);
+        if(ulp_u==ulp_v)return;
+        if(rank[ulp_u]<rank[ulp_v]){
+            parent[ulp_u]=ulp_v;
+        }
+        else if(rank[ulp_u]>rank[ulp_v]){
+            parent[ulp_v]=ulp_u;
+        }
+        else{
+            parent[ulp_v]=ulp_u;
+            rank[ulp_u]++;
+        }
+    }
+}
+public class Darkroads {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner (System.in);
+        int m=sc.nextInt();
+        int n=sc.nextInt();
+        int[][] edges=new int[n][3];
+        for(int i=0;i<n;i++){
+            edges[i][0]=sc.nextInt();
+            edges[i][1]=sc.nextInt();
+            edges[i][2]=sc.nextInt();
+        }
+        Disjoint d=new Disjoint(m);
+        Arrays.sort(edges,(a,b)->a[2]-b[2]);
+        int cost=0;
+        int totalCost=0;
+        int ans=0;
+        for(int i=0;i<n;i++){
+            int u=edges[i][0];
+            int v=edges[i][1];
+            int w=edges[i][2];
+            if(d.find(u)!=d.find(v)){
+                d.union(u,v);
+                cost+=w;
+            }
+        }
+        for(int i=0;i<n;i++){
+            totalCost+=edges[i][2];
+        }
+        ans=totalCost-cost;
+        System.out.println(ans);
+        
+
+
+    }
+    
+}
