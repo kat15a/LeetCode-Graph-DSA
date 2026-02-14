@@ -1,0 +1,49 @@
+import java.util.*;
+
+class Pair {
+    int weight;
+    int node;
+
+    public Pair(int weight, int node) {
+        this.weight = weight;
+        this.node = node;
+    }
+}
+
+class Solution {
+    public int minCostConnectPoints(int[][] points) {
+
+        int n = points.length;
+        int[] vis = new int[n];
+        Arrays.fill(vis, 0);
+
+        PriorityQueue<Pair> pq=new PriorityQueue<>((a, b) -> a.weight - b.weight);
+
+        pq.add(new Pair(0, 0)); 
+
+        int sum = 0;
+        int count = 0;
+
+        while (!pq.isEmpty() && count < n) {
+
+            Pair p = pq.poll();
+            int wt = p.weight;
+            int node = p.node;
+
+            if (vis[node] == 1)
+                continue;
+
+            vis[node] = 1;
+            sum += wt;
+            for (int i = 0; i < n; i++) {
+                if (vis[i] == 0) {
+                    int dist = Math.abs(points[node][0] - points[i][0]) +
+                               Math.abs(points[node][1] - points[i][1]);
+                    pq.add(new Pair(dist, i));
+                }
+            }
+        }
+
+        return sum;
+    }
+}
