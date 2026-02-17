@@ -1,0 +1,36 @@
+Problem: Redundant Connection II
+
+Problem Statement:
+You are given a directed graph with n nodes labeled from 1 to n.
+
+The graph started as a rooted tree with n nodes,
+but one extra directed edge was added.
+
+Task:
+Return the edge that can be removed so that the resulting graph is a rooted tree.
+
+There are three possible cases:
+1. A node has two parents.
+2. There is a cycle.
+3. Both two parents and a cycle exist.
+
+Approach:
+1. Detect if a node has two parents using indegree tracking.
+   - Store two conflicting edges (bl1 and bl2).
+2. Use Disjoint Set (Union-Find) to detect cycle:
+   - Skip one conflicting edge if needed.
+3. Handle cases:
+   - If no node has two parents → return edge causing cycle.
+   - If cycle exists after skipping → return first conflicting edge.
+   - Otherwise → return second conflicting edge.
+
+Algorithm Used:
+- Disjoint Set (Union by Rank)
+- Cycle Detection
+- Graph Theory (Rooted Tree Property)
+
+Time Complexity:
+- O(N * α(N))
+
+Space Complexity:
+- O(N)
