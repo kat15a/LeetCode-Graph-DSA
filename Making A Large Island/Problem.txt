@@ -1,0 +1,33 @@
+Problem: Making A Large Island
+
+Problem Statement:
+You are given an n x n binary grid where:
+- 1 represents land
+- 0 represents water
+
+You may change at most one 0 to 1.
+
+Task:
+Return the size of the largest island possible after making at most one change.
+
+An island is a group of connected 1s (4-directionally).
+
+Approach:
+1. Treat each cell as a node (r * n + c).
+2. Use Disjoint Set (Union-Find) to connect adjacent land cells.
+3. For each water cell (0):
+   - Check its 4 neighbors.
+   - Collect unique parent components using a HashSet.
+   - Sum their sizes + 1 (for flipped cell).
+4. Also handle edge case where grid contains only 1s.
+
+Algorithm Used:
+- Disjoint Set (Union by Size)
+- Path Compression
+- Grid Traversal
+
+Time Complexity:
+- O(n²)
+
+Space Complexity:
+- O(n²)
