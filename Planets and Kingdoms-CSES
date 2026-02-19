@@ -1,0 +1,83 @@
+import java.util.*;
+
+public class PlanetsAndKingdoms {
+
+    static int[] arr;
+    static int Label = 0;
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
+        }
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt() - 1; 
+            int b = sc.nextInt() - 1;
+            adj.get(a).add(b);
+        }
+
+        Stack<Integer> s = new Stack<>();
+        boolean[] vis = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            if (!vis[i]) {
+                dfs1(i, adj, vis, s);
+            }
+        }
+        ArrayList<ArrayList<Integer>> transpose = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            transpose.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < n; i++) {
+            for (int it : adj.get(i)) {
+                transpose.get(it).add(i);
+            }
+        }
+
+        Arrays.fill(vis, false);
+        arr = new int[n];
+        while (!s.isEmpty()) {
+            int node = s.pop();
+            if (!vis[node]) {
+                Label++;
+                dfs2(node, transpose, vis);
+            }
+        }
+        System.out.println(Label);
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    private static void dfs1(int node, ArrayList<ArrayList<Integer>> adj,
+                             boolean[] vis, Stack<Integer> s) {
+
+        vis[node] = true;
+
+        for (int it : adj.get(node)) {
+            if (!vis[it]) {
+                dfs1(it, adj, vis, s);
+            }
+        }
+
+        s.push(node);
+    }
+
+    private static void dfs2(int node, ArrayList<ArrayList<Integer>> adj,
+                             boolean[] vis) {
+
+        vis[node] = true;
+        arr[node] = Label;
+
+        for (int it : adj.get(node)) {
+            if (!vis[it]) {
+                dfs2(it, adj, vis);
+            }
+        }
+    }
+}
