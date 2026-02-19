@@ -1,0 +1,35 @@
+Problem: Largest Component Size by Common Factor
+
+Problem Statement:
+You are given an array of unique positive integers nums.
+
+Two numbers are connected if they share a common factor greater than 1.
+
+Task:
+Return the size of the largest connected component in the graph.
+
+Approach:
+1. Find the maximum number in nums.
+2. Create a Disjoint Set of size (max + 1).
+3. For each number:
+   - Iterate from 2 to sqrt(num).
+   - If factor divides num:
+       - Union(num, factor)
+       - Union(num, num/factor)
+4. Count frequency of each parent using HashMap.
+5. Return the maximum frequency.
+
+Algorithm Used:
+- Disjoint Set (Union by Rank)
+- Factorization (up to sqrt(n))
+- HashMap counting
+
+Time Complexity:
+- O(N * √M)
+
+Where:
+N = number of elements
+M = maximum value in nums
+
+Space Complexity:
+- O(M)
