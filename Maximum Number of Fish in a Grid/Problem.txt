@@ -1,0 +1,32 @@
+Problem: Maximum Number of Fish in a Grid
+
+Problem Statement:
+You are given an m x n grid.
+
+- grid[i][j] represents the number of fish at that cell.
+- 0 represents land (cannot pass).
+- Positive value represents water containing fish.
+
+You can start at any water cell and move in 4 directions
+(up, down, left, right).
+
+Task:
+Return the maximum number of fish you can collect from a connected water region.
+
+Approach:
+1. Traverse the grid.
+2. For each unvisited water cell:
+   - Perform BFS to explore its connected component.
+   - Sum all fish in that component.
+3. Track the maximum sum among all components.
+
+Algorithm Used:
+- BFS (Breadth First Search)
+- Grid Traversal
+- Connected Components
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
