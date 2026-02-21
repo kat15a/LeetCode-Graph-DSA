@@ -1,0 +1,61 @@
+import java.util.*;
+
+class ABugsLife {
+    static ArrayList<Integer>[] graph;
+    static int[] color;
+    static boolean suspicious;
+
+    static void dfs(int node, int c) {
+        color[node] = c;
+
+        for (int neighbor : graph[node]) {
+            if (color[neighbor] == 0) {
+                dfs(neighbor, -c);
+                if (suspicious) return;
+            } 
+            else if (color[neighbor] == c) {
+                suspicious = true;
+                return;
+            }
+        }
+    }
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+
+        for(int i = 1; i <= t; i++){
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+
+            graph = new ArrayList[n + 1];
+            for(int j = 1; j <= n; j++){
+                graph[j] = new ArrayList<>();
+            }
+
+            for(int j = 0; j < m; j++){
+                int x = sc.nextInt();
+                int y = sc.nextInt();
+                graph[x].add(y);
+                graph[y].add(x);
+            }
+
+            color = new int[n + 1];
+            suspicious = false;
+
+            for(int j = 1; j <= n; j++){
+                if(color[j] == 0){
+                    dfs(j, 1);
+                }
+                if(suspicious) break;
+            }
+
+            System.out.println("Scenario #" + i + ":");
+            if(suspicious){
+                System.out.println("Suspicious bugs found!");
+            } else {
+                System.out.println("No suspicious bugs found!");
+            }
+        }
+    }
+}
