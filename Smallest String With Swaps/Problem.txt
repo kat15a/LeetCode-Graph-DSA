@@ -1,0 +1,30 @@
+Problem: Smallest String With Swaps
+
+Problem Statement:
+You are given a string s and an array of index pairs.
+
+You can swap characters at any pair of indices any number of times.
+
+Task:
+Return the lexicographically smallest string that can be formed.
+
+Approach:
+1. Use Disjoint Set (Union-Find) to group connected indices.
+2. Each connected component represents indices that can be freely swapped.
+3. For each component:
+   - Collect all indices.
+   - Collect corresponding characters.
+   - Sort characters.
+   - Place them back in sorted order at those indices.
+4. Return the constructed string.
+
+Algorithm Used:
+- Disjoint Set (Union by Size)
+- Graph Connectivity
+- Sorting
+
+Time Complexity:
+- O(N log N)
+
+Space Complexity:
+- O(N)
