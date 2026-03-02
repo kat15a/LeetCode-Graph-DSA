@@ -1,0 +1,28 @@
+Problem: Perfect Squares
+
+Problem Statement:
+Given an integer n, return the least number of perfect square
+numbers that sum to n.
+
+A perfect square is an integer that is the square of an integer
+(e.g., 1, 4, 9, 16, ...).
+
+Task:
+Return the minimum number of perfect squares whose sum equals n.
+
+Approach:
+- Treat the problem as a graph.
+- Each number represents a node.
+- From a number, subtract all possible perfect squares.
+- Use BFS to find the shortest path to 0.
+- The level at which we reach 0 is the answer.
+
+Algorithm Used:
+- Breadth First Search (BFS)
+- Shortest Path in Unweighted Graph
+
+Time Complexity:
+- O(N √N)
+
+Space Complexity:
+- O(N)
