@@ -1,0 +1,36 @@
+Problem: Edit Distance
+
+Problem Statement:
+Given two strings word1 and word2, return the minimum number
+of operations required to convert word1 into word2.
+
+Allowed operations:
+- Insert a character
+- Delete a character
+- Replace a character
+
+Task:
+Find the minimum number of operations needed.
+
+Approach:
+- Use recursion with memoization (DP).
+- If characters match → move both pointers forward.
+- Otherwise try all three operations:
+  1. Insert → move pointer in word2
+  2. Delete → move pointer in word1
+  3. Replace → move both pointers
+- Take the minimum of the three choices.
+- Base cases:
+  - If word1 is exhausted → insert remaining characters of word2.
+  - If word2 is exhausted → delete remaining characters of word1.
+
+Algorithm Used:
+- Dynamic Programming
+- Recursion + Memoization
+- String DP Pattern
+
+Time Complexity:
+- O(N × M)
+
+Space Complexity:
+- O(N × M)
