@@ -1,0 +1,32 @@
+class Solution {
+    public int perfectSum(int[] nums, int target) {
+        int n = nums.length;
+
+        int[][] dp = new int[n][target + 1];
+
+        for(int i = 0; i < n; i++){
+            Arrays.fill(dp[i], -1);
+        }
+
+        return helper(0, nums, target, dp);
+    }
+
+    private int helper(int id, int[] nums, int target, int[][] dp){
+
+        if(id == nums.length){
+            if(target == 0) return 1;
+            return 0;
+        }
+
+        if(dp[id][target] != -1) return dp[id][target];
+
+        int notpick = helper(id + 1, nums, target, dp);
+
+        int pick = 0;
+        if(nums[id] <= target){
+            pick = helper(id + 1, nums, target - nums[id], dp);
+        }
+
+        return dp[id][target] = pick + notpick;
+    }
+}
