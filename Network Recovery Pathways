@@ -1,0 +1,46 @@
+Problem: Network Recovery Pathways
+
+Problem Statement:
+You are given a Directed Acyclic Graph (DAG) with n nodes numbered from 0 to n−1.
+Each directed edge is represented as [u, v, cost], where cost is the recovery cost to travel from u to v.
+
+Some nodes may be offline. Nodes 0 and n−1 are always online.
+
+A path from node 0 to node n−1 is valid if:
+- All intermediate nodes are online.
+- The total recovery cost of the path does not exceed k.
+
+The score of a valid path is defined as the minimum edge cost on that path.
+
+Task:
+Return the maximum possible path score among all valid paths.
+If no valid path exists, return -1.
+
+Approach:
+- Build the graph as an adjacency list.
+- Since the graph is a DAG, compute a topological ordering.
+- Binary search on the answer (minimum edge cost).
+- For each candidate score:
+  - Ignore all edges whose cost is smaller than the candidate.
+  - Skip paths passing through offline intermediate nodes.
+  - Perform DP over the topological order to compute the minimum total cost to each node.
+  - If the destination can be reached with total cost ≤ k, the candidate score is feasible.
+- Binary search finds the largest feasible minimum edge cost.
+
+Algorithm Used:
+- Binary Search on Answer
+- Topological Sort
+- Dynamic Programming on DAG
+- Shortest Path in DAG
+
+Time Complexity:
+- O((V + E) × log(MaxEdgeCost))
+
+Space Complexity:
+- O(V + E)
+
+Interview Insight:
+- The answer is monotonic, making Binary Search applicable.
+- A DAG allows shortest-path computation using Topological DP instead of Dijkstra.
+- Instead of maximizing the minimum edge directly, check whether a candidate minimum edge cost is feasible.
+- Combining Binary Search with DAG DP results in an efficient solution for large graphs.
