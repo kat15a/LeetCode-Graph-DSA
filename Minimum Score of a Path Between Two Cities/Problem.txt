@@ -1,0 +1,42 @@
+Problem: Minimum Score of a Path Between Two Cities
+
+Problem Statement:
+You are given n cities connected by bidirectional roads.
+Each road is represented as [u, v, distance].
+
+The score of a path is defined as the minimum edge distance along that path.
+
+Task:
+Return the minimum possible score of a path between city 1 and city n.
+
+Note:
+- The graph may not be fully connected.
+- A path may revisit cities and roads multiple times.
+- It is guaranteed that at least one path exists between city 1 and city n.
+
+Approach:
+- Build the graph as an adjacency list.
+- Since revisiting roads is allowed, every city in the connected component
+  containing city 1 is reachable.
+- Perform DFS/BFS starting from city 1.
+- While traversing, keep updating the answer with the minimum road distance
+  encountered.
+- The minimum edge in the connected component containing city 1 is the answer,
+  because we can always traverse through that edge and still reach city n.
+
+Algorithm Used:
+- Depth First Search (DFS)
+  or
+- Breadth First Search (BFS)
+
+Time Complexity:
+- O(V + E)
+
+Space Complexity:
+- O(V + E)
+
+Interview Insight:
+- The key observation is that paths are allowed to revisit cities and roads.
+- Therefore, we only need to explore the connected component containing city 1.
+- The answer is simply the minimum edge weight present in that connected component.
+- Many candidates incorrectly try to use Dijkstra's algorithm, but shortest path algorithms are unnecessary here.
