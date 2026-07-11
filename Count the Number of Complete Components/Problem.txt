@@ -1,0 +1,44 @@
+Problem: Count the Number of Complete Components
+LeetCode Link: https://leetcode.com/problems/count-the-number-of-complete-components/
+
+Problem Statement:
+You are given an undirected graph with n vertices numbered from 0 to n−1.
+Each edge is represented as [u, v].
+
+A connected component is called complete if every pair of distinct vertices
+within that component is directly connected by an edge.
+
+Task:
+Return the number of complete connected components in the graph.
+
+Approach:
+- Build the graph as an adjacency list.
+- Traverse each connected component using DFS or BFS.
+- For every component:
+  - Count the number of vertices (nodes).
+  - Count the total degree of all vertices.
+- Since each undirected edge contributes to the degree of two vertices:
+  - Number of edges = (sum of degrees) / 2.
+- A component with V vertices is complete if:
+  - Number of edges = V × (V − 1) / 2.
+- Count every component satisfying this condition.
+
+Algorithm Used:
+- Depth First Search (DFS)
+  or
+- Breadth First Search (BFS)
+- Graph Traversal
+
+Time Complexity:
+- O(V + E)
+
+Space Complexity:
+- O(V + E)
+
+Interview Insight:
+- A complete graph with V vertices must contain exactly
+  V × (V − 1) / 2 edges.
+- Instead of checking every pair of vertices, simply count the
+  vertices and edges in each connected component.
+- Using the edge-count formula makes the solution both simple
+  and efficient.
